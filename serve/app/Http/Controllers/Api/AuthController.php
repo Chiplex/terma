@@ -22,21 +22,6 @@ class AuthController extends Controller
         return response(['user' => $user, 'access_token' => $accessToken]);
     }
 
-    public function Login(Request $request)
-    {
-        $requestValidated = $request->validate([
-            'email' => 'email|required',
-            'password' => 'required'
-        ]);
-
-        if (!auth()->attempt($requestValidated)) {
-            return response(['message'=> 'Invalid credentials']);
-        }
-        $accessToken = auth()->user()->createToken('authToken')->accessToken;
-        
-        return response(['user' => auth()->user(), 'access_token' => $accessToken]);
-    }
-
     public function Logout() {
         $user = auth()->user()->token();
         $user->revoke();
