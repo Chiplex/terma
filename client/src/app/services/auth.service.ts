@@ -48,7 +48,8 @@ export class AuthService {
    */
   logout() {
     let BearerToken = 'Bearer ' + localStorage.getItem('access_token');
-    this.options.headers.Authorization = BearerToken;
-    return this.http.get(this.apiUrl + '/logout', this.options);
+    let apiLogoutUrl = this.apiUrl + '/logout';
+    let headers = new HttpHeaders().set('Authorization', BearerToken);
+    return this.http.get(apiLogoutUrl, {headers});
   }
 }
