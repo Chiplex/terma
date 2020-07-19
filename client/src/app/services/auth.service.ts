@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { LoginRequest } from '../interface/login-request';
 
 @Injectable({
   providedIn: 'root'
@@ -7,7 +8,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class AuthService {
 
   // Variables
-  authUrl = 'http://localhost:8000/oauth/token';
+  authUrl = 'http://localhost:8000/api/oauth/token';
   apiUrl = 'http://localhost:8000/api';
   options: any;
 
@@ -29,22 +30,25 @@ export class AuthService {
    * @param e The email address
    * @param p The password string
    */
-  login(e: string, p: string) {
-    return this.http.post(this.authUrl, {
+  login(loginRequest: LoginRequest) {
+    let json = {
       grant_type: 'password',
       client_id: '2',
-      client_secret: 'R8SHmiZbj7pQjurwuTxZMsR6q1VlCJer85WfwGp1',
-      username: e,
-      password: p,
+      client_secret: '7839cd8pCEohS183TNbKE2CqQBwpc7f3xryS53yw',
+      username: loginRequest.email,
+      password: loginRequest.password,
       scope: ''
-    }, this.options);
+    };
+    let body = JSON.stringify(json);
+    return this.http.post(this.authUrl, body, this.options);
   }
 
   /**
    * Revoke the authenticated user token
    */
   logout() {
-    this.options.headers.Authorization = 'Bearer ' + localStorage.getItem('access_token');
-    return this.http.get(this.apiUrl + '/token/revoke', this.options);
+    let BearerToken = 'Bearer ' + localStorage.getItem('access_token');
+    this.options.headers.Authorization = BearerToken;
+    return this.http.get(this.apiUrl + '/logout', this.options);
   }
 }

@@ -1,22 +1,24 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from "@angular/common/http";
 //import { ColorPickerModule } from 'ngx-color-picker';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { Routes, RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
+import { HttpClientModule } from "@angular/common/http";
+
 import { AppComponent } from './app.component';
-import { HomeComponent } from './component/home/home.component';
+// import { HomeComponent } from './component/home/home.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    //HomeComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
