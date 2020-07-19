@@ -7,13 +7,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from "@angular/common/http";
 
 import { AppComponent } from './app.component';
-// import { HomeComponent } from './component/home/home.component';
+import { NavbarComponent } from './shared/navbar/navbar.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    //HomeComponent
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,

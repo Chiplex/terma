@@ -11,6 +11,7 @@ export class AuthService {
   authUrl = 'http://localhost:8000/api/oauth/token';
   apiUrl = 'http://localhost:8000/api';
   options: any;
+  logged: boolean;
 
   /**
    * Constructor
@@ -41,6 +42,7 @@ export class AuthService {
     };
     let body = JSON.stringify(json);
     return this.http.post(this.authUrl, body, this.options);
+    this.logged = true;
   }
 
   /**
@@ -50,6 +52,17 @@ export class AuthService {
     let BearerToken = 'Bearer ' + localStorage.getItem('access_token');
     let apiLogoutUrl = this.apiUrl + '/logout';
     let headers = new HttpHeaders().set('Authorization', BearerToken);
-    return this.http.get(apiLogoutUrl, {headers});
+    this.logged = true;
+    return this.http.get(apiLogoutUrl, { headers });
+  }
+
+  isLoggedIn() {
+    if (JSON.parse(localStorage.getItem('access_token')).auth_token == null) {
+      this.logged = false;
+      return this.logged;
+    }
+    else {
+      return true;
+    }
   }
 }
