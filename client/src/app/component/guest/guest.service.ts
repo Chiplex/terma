@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Guest } from '../interface/guest';
+import { Guest } from '../../interface/guest';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 

@@ -9,6 +9,8 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
 
+  loading: boolean;
+  
   constructor(
     public authService: AuthService,
     private router: Router
@@ -18,10 +20,10 @@ export class NavbarComponent implements OnInit {
   }
 
   logout(): void {
-    //this.loading = true;
-    this.authService.logout()
+    this.loading = true;
+    this.authService.leave()
       .subscribe(() => {
-        //this.loading = false;
+        this.loading = false;
         localStorage.removeItem('access_token');
         this.router.navigate(['/login']);
       },(error) => {

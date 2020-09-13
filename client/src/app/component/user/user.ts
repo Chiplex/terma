@@ -1,4 +1,4 @@
-import { Guest } from '../interface/guest';
+import { Guest } from '../../interface/guest';
 
 export interface User {
     id: string;

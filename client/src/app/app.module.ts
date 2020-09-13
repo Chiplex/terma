@@ -1,8 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 //import { ColorPickerModule } from 'ngx-color-picker';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { Routes, RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from "@angular/common/http";
 

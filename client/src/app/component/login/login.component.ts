@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from '../services/auth.service';
-import { LoginRequest } from '../interface/login-request';
+import { AuthService } from '../../services/auth.service';
+import { LoginRequest } from '../../interface/login-request';
 
 @Component({
   selector: 'app-login',
@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
   login(loginRequest: LoginRequest): void {
     this.loading = true;
     this.errors = false;
-    this.authService.login(loginRequest)
+    this.authService.create(loginRequest)
       .subscribe((res: any) => {
         // Store the access token in the localstorage
         localStorage.setItem('access_token', res.access_token);

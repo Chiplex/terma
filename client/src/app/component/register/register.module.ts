@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RegisterComponent } from './register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
-import { GuestGuardService } from '../services/guest-guard.service';
+import { GuestGuardService } from '../../services/guest-guard.service';
 
 const routes: Routes = [
   {

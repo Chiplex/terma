@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { GuestService } from './guest.service';
-import { Guest } from '../interface/guest';
+import { Guest } from '../../interface/guest';
 import { map, takeUntil } from 'rxjs/operators';
 import { Subject, Observable } from 'rxjs';
 

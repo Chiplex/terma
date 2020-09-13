@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,8 @@ export class AuthGuardService {
    * @param router The router object
    */
   constructor(
-    private router: Router
+    private router: Router,
+    private auth: AuthService
   ) { }
 
   /**
@@ -23,9 +25,7 @@ export class AuthGuardService {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ) {
-    if (
-      localStorage.getItem('access_token')
-    ) { return true; }
+    if (this.auth.isLoggedIn()) { return true; }
     localStorage.removeItem('access_token');
     this.router.navigateByUrl('/login');
     return false;
