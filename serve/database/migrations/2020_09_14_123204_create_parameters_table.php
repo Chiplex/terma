@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateGuestsTable extends Migration
+class CreateParametersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,14 @@ class CreateGuestsTable extends Migration
      */
     public function up()
     {
-        Schema::create('guests', function (Blueprint $table) {
+        Schema::create('parameters', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('id_user')->unsigned();
+            $table->string('type', 50);
+            $table->string('code', 50);
+            $table->string('value', 50);
+            $table->string('description', 100);
             $table->timestamps();
-            $table->foreign('id_user')->references('id')->on('users');
+            $table->softDeletes('deleted_at', 0);
         });
     }
 
@@ -28,6 +31,6 @@ class CreateGuestsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('guests');
+        Schema::dropIfExists('parameters');
     }
 }

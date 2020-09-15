@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { RegisterService } from '../../services/register.service';
+import { RegisterService } from './register.service';
 import { RegisterRequest } from '../../interface/register-request';
 import { HttpErrorResponse } from '@angular/common/http';
 
