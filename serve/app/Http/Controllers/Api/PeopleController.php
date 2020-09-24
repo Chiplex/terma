@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Guest;
+use App\Models\People;
 use Illuminate\Http\Request;
 
-class GuestController extends Controller
+class PeopleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,10 +15,10 @@ class GuestController extends Controller
      */
     public function index()
     {
-        $guests = Guest::paginate(25);
+        $people = People::paginate(25);
         return response()->json([
             'success' => true,
-            'data' => $guests
+            'data' => $people
         ]);
     }
 
@@ -32,7 +32,7 @@ class GuestController extends Controller
         $requestValidated = $request->validate([
             'user_id' => 'required|exists:user,id'
         ]);
-        $guest = Guest::create($requestValidated);
+        $guest = People::create($requestValidated);
         return response()->json([
             'success' => true,
             'data' => $guest
@@ -53,10 +53,10 @@ class GuestController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Guest  $guest
+     * @param  \App\Models\People  $guest
      * @return \Illuminate\Http\Response
      */
-    public function show(Guest $guest)
+    public function show(People $guest)
     {
         //
     }
@@ -64,10 +64,10 @@ class GuestController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Guest  $guest
+     * @param  \App\Models\People  $people
      * @return \Illuminate\Http\Response
      */
-    public function edit(Guest $guest)
+    public function edit(People $people)
     {
         //
     }
@@ -76,10 +76,10 @@ class GuestController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Guest  $guest
+     * @param  \App\Models\People  $people
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Guest $guest)
+    public function update(Request $request, People $people)
     {
         //
     }
@@ -87,10 +87,10 @@ class GuestController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Guest  $guest
+     * @param  \App\Models\People  $people
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Guest $guest)
+    public function destroy(People $people)
     {
         //
     }
