@@ -2,7 +2,8 @@
     <div class="row mt-5">
         <div class="col-xl-8 offset-xl-2">
             <div class="card shadow">
-                <div class="card-header text-right py-3"><button class="btn btn-primary" type="button">Nuevo</button>
+                <div class="card-header text-right py-3">
+                    <a [routerLink]="['/event/create']" href="#" class="btn btn-primary" type="button">Nuevo</a>
                 </div>
                 <ngx-datatable [rows]="rows" [columns]="columns" class="bootstrap" rowHeight="auto" [columnMode]="'force'">
                 </ngx-datatable>

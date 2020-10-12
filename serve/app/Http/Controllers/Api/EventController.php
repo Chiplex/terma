@@ -26,18 +26,18 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {        
+        $slug = Str::slug($request->name, "-");
         $request->validate([
             'title' => 'required|max:255',
-            'slug' => 'unique:events,slug,'.Str::slug($request->name, "-"),
-            'description' => 'required|max:65535',
+            'slug' => 'unique:events,slug,'.$slug,
             'willStart' => 'required|date|after_or_equal:'.date('Y-m-d'),
             'willEnd' => 'required|date|after_or_equal:willStart',
         ]);
         $event = new Event();
         $event->idevents    = Str::uuid();
         $event->title       = $request->title;
-        $event->slug        = Str::slug($request->name, "-");
-        $event->description = $request->description;
+        $event->slug        = $slug;
+        $event->description = $request->description ?? "asd";
         $event->willStart   = $request->willStart;
         $event->willEnd     = $request->willEnd;
         // $event->id_organizer= $request->user()->id;

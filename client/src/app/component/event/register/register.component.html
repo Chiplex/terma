@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-xl-8 offset-xl-2">
+            <form action="" method="POST" (ngSubmit)="onSubmit(eventForm.value)" [formGroup]="eventForm">
+                <div class="card shadow">
+                    <div class="card-header text-right py-3">
+                        <button class="btn btn-primary" type="submit">
+                            Guardar
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="title">Titulo:</label>
+                            <input type="text" class="form-control" formControlName="title" autofocus minlength="5"
+                                maxlength="255" />
+                        </div>
+                        <div class="form-group">
+                            <label for="start">Comienza:</label>
+                            <div class="input-group">
+                                <input class="form-control col-md-6" type="date" formControlName="willStartDate" />
+                                <input class="form-control col-md-6" type="time" formControlName="willStartTime" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Termina:</label>
+                            <div class="input-group">
+                                <input class="form-control" type="date" formControlName="willEndDate" />
+                                <input class="form-control" type="time" formControlName="willEndTime" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

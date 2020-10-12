@@ -3,7 +3,9 @@ import { NgModule } from '@angular/core';
 //import { ColorPickerModule } from 'ngx-color-picker';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from "@angular/common/http";
-import { NgxDatatableModule } from "@swimlane/ngx-datatable";
+//import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+//import { NgxDatatableModule } from "@swimlane/ngx-datatable";
+
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
@@ -16,11 +18,13 @@ import { EventModule } from "./component/event/event.module";
     NavbarComponent,
   ],
   imports: [
-    NgxDatatableModule,
+    //NgxDatatableModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    EventModule
+    EventModule,
+    //FormsModule,
+    //ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
