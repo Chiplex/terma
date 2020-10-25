@@ -5,7 +5,22 @@
                 <div class="card-header text-right py-3">
                     <a [routerLink]="['/event/create']" href="#" class="btn btn-primary" type="button">Nuevo</a>
                 </div>
-                <ngx-datatable [rows]="rows" [columns]="columns" class="bootstrap" rowHeight="auto" [columnMode]="'force'">
+                <ngx-datatable [rows]="event$ | async" [columns]="columns" class="bootstrap" rowHeight="auto" [columnMode]="'force'">
+                    <ngx-datatable-column name="Title">
+                        <ng-template let-value="value" ngx-datatable-cell-template>          
+                            {{value.title}}
+                        </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column name="Start">
+                        <ng-template let-value="value" ngx-datatable-cell-template>          
+                            {{value.willStart}}
+                        </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column name="End">
+                        <ng-template let-value="value" ngx-datatable-cell-template>          
+                            {{value.willEnd}}
+                        </ng-template>
+                    </ngx-datatable-column>
                 </ngx-datatable>
                 <div class="card-body">
                     

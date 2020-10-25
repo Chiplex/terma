@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Event;
+use Illuminate\Support\Str;
 
 class EventController extends Controller
 {
@@ -15,7 +16,7 @@ class EventController extends Controller
      */
     public function index()
     {
-        return Event::paginate(25);
+        return Event::all();
     }
 
     /**
@@ -26,21 +27,20 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {        
-        $slug = Str::slug($request->name, "-");
+        $slug = Str::slug($request->title, "-");
         $request->validate([
             'title' => 'required|max:255',
             'slug' => 'unique:events,slug,'.$slug,
-            'willStart' => 'required|date|after_or_equal:'.date('Y-m-d'),
-            'willEnd' => 'required|date|after_or_equal:willStart',
+            'willStart' => 'required|date_format:Y-m-d H:i|after:+1 now',
+            'willEnd' => 'required|date_format:Y-m-d H:i|after_or_equal:willStart',
         ]);
+
         $event = new Event();
-        $event->idevents    = Str::uuid();
         $event->title       = $request->title;
         $event->slug        = $slug;
-        $event->description = $request->description ?? "asd";
+        $event->description = $request->description ?? "El mejor evento del mundo";
         $event->willStart   = $request->willStart;
         $event->willEnd     = $request->willEnd;
-        // $event->id_organizer= $request->user()->id;
         $event->save();        
         
         return response()->json([

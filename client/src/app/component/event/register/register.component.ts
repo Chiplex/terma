@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { EventService } from 'src/app/services/event.service';
-import { Event } from "../../../interface/event";
+import { Event } from "src/app/interface/event";
 
 @Component({
   selector: 'app-register',
@@ -14,22 +15,21 @@ export class EventRegisterComponent implements OnInit {
     id: '',
     description: '',
     title: '',
-    willStart: this.fechaActual(),
+    willStart: '',
     willEnd: ''
   };
-
-  public minStartDate: string = this.fechaActual();
-  public minEndDate: string = this.minStartDate;
-
-  eventForm: FormGroup;
+  public eventForm: FormGroup;
+  public error:boolean = false;
+  public message:string = "false";
 
   constructor(
     private formBuilder: FormBuilder,
-    public eventService: EventService
+    public eventService: EventService,
+    private router: Router
   ) {
     this.eventForm = this.formBuilder.group({
       title: '',
-      willStartDate: this.fechaActual(),
+      willStartDate: '',
       willStartTime: '',
       willEndDate: '',
       willEndTime: ''
@@ -42,42 +42,20 @@ export class EventRegisterComponent implements OnInit {
 
   onSubmit(form) {
     this.event.title = form.title;
-    this.event.willStart = form.willStartDate + ' ' + form.willStartTime
-    this.event.willEnd = form.willEndDate + ' ' + form.willEndTime
-    this.eventService.store(this.event).subscribe(res => { }, err => { });
-    console.log(1);
+    this.event.willStart = form.willStartDate + ' ' + form.willStartTime;
+    this.event.willEnd = form.willEndDate + ' ' + form.willEndTime;
+    
+    this.eventService.store(this.event).subscribe(res => this.onSuccess() , err => this.onError(err));
+  }
+
+  onError(err){
+    this.error = true;
+    this.message = err.error.message
 
   }
 
-
-  fechaActual() {
-    let date = new Date();
-    let day = date.getDate();
-    let month = date.getMonth() + 1;
-    let year = date.getFullYear();
-    if (month < 10) month = 0 + month;
-    if (day < 10) day = 0 + day;
-    return year + "-" + month + "-" + day;
-  }
-
-  DateAddDays(date, days) {
-    console.log(this.minEndDate);
-
-    if (date == null) {
-
-      date = new Date();
-    }
-    //var date = new Date(this.valueOf());
-    date.setDate(date.getDate() + days);
-    return date;
-  }
-
-  DateControl(date) {
-    var day = date.getUTCDate();
-    var month = date.getUTCMonth() + 1;
-    var year = date.getUTCFullYear();
-    if (month < 10) month = "0" + month;
-    if (day < 10) day = "0" + day;
-    return year + "-" + month + "-" + day;
+  onSuccess(){
+    this.error = false;
+    this.router.navigate(['/event']);
   }
 }

@@ -28,6 +28,9 @@
                                 <input class="form-control" type="time" formControlName="willEndTime" />
                             </div>
                         </div>
+                        <div class="alert alert-danger" role="alert" *ngIf="error">
+                            {{ message }}
+                          </div>
                     </div>
                 </div>
             </form>
