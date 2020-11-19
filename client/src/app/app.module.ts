@@ -10,12 +10,18 @@ import { HttpClientModule } from "@angular/common/http";
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { EventModule } from "./component/event/event.module";
+import { PeopleComponent } from './component/people/people.component';
+import { ListComponent } from './component/people/list/list.component';
+import { RegisterComponent } from './component/people/register/register.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
+    PeopleComponent,
+    ListComponent,
+    RegisterComponent,
   ],
   imports: [
     //NgxDatatableModule,

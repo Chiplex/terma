@@ -11,13 +11,8 @@ import { EventService } from 'src/app/services/event.service';
 })
 export class EventListComponent implements OnInit {
 
-  event$: Observable<Event[]>;
-  // rows = [
-  //   { name: 'Austin', gender: 'Male', company: 'Swimlane' },
-  //   { name: 'Dany', gender: 'Maasdasdle', company: 'KFC' },
-  //   { name: 'Molly', gender: 'Female', company: 'Burger King' }
-  // ];
-  columns = [{ prop: 'title' }, { name: 'willStart' }, { name: 'willEnd' }];
+  public event$: Observable<Event[]>;
+  public columns = [{ name: 'title' }, { name: 'willStart' }, { name: 'willEnd' }];
     
   constructor(public eventService: EventService) { }
 
@@ -26,8 +21,7 @@ export class EventListComponent implements OnInit {
     
   }
 
-  onSuccess(res){
+  public onSuccess(res){
     this.event$ = res;
-    
   }
 }

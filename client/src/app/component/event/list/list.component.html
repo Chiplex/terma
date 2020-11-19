@@ -5,26 +5,24 @@
                 <div class="card-header text-right py-3">
                     <a [routerLink]="['/event/create']" href="#" class="btn btn-primary" type="button">Nuevo</a>
                 </div>
-                <ngx-datatable [rows]="event$ | async" [columns]="columns" class="bootstrap" rowHeight="auto" [columnMode]="'force'">
-                    <ngx-datatable-column name="Title">
-                        <ng-template let-value="value" ngx-datatable-cell-template>          
-                            {{value.title}}
+                <ngx-datatable [rows]="event$" [columns]="columns" class="bootstrap" rowHeight="auto"
+                    [columnMode]="'force'">
+                    <ngx-datatable-column name="Titulos">
+                        <ng-template let-row="row" let-id="row.id" ngx-datatable-cell-template>
+                            {{ row.title }}
                         </ng-template>
                     </ngx-datatable-column>
-                    <ngx-datatable-column name="Start">
-                        <ng-template let-value="value" ngx-datatable-cell-template>          
-                            {{value.willStart}}
+                    <ngx-datatable-column name="Comienza">
+                        <ng-template let-row="row" let-id="row.id" ngx-datatable-cell-template>
+                            {{ row.willStart }}
                         </ng-template>
                     </ngx-datatable-column>
-                    <ngx-datatable-column name="End">
-                        <ng-template let-value="value" ngx-datatable-cell-template>          
-                            {{value.willEnd}}
+                    <ngx-datatable-column name="Termina">
+                        <ng-template let-row="row" let-id="row.id" ngx-datatable-cell-template>
+                            {{ row.willEnd }}
                         </ng-template>
                     </ngx-datatable-column>
                 </ngx-datatable>
-                <div class="card-body">
-                    
-                </div>
             </div>
         </div>
     </div>
