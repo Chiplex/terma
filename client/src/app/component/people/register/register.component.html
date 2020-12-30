@@ -1,1 +1,59 @@
-<p>register works!</p>
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-xl-8 offset-xl-2">
+            <form action="" method="POST" (ngSubmit)="onSubmit(peopleForm.value)" [formGroup]="peopleForm">
+                <div class="card shadow">
+                    <div class="card-header text-right py-3">
+                        <button class="btn btn-primary" type="submit">
+                            Guardar
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="name">Nombre:</label>
+                            <input type="text" class="form-control" formControlName="name" autofocus minlength="5"
+                                maxlength="20" />
+                        </div>
+                        <div class="form-group">
+                            <label for="otherName">Otros Nombres:</label>
+                            <input type="text" class="form-control" formControlName="otherName" minlength="5"
+                                maxlength="20" />
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Apellidos:</label>
+                            <input type="text" class="form-control" formControlName="lastName" minlength="5"
+                                maxlength="20" />
+                        </div>
+                        <div class="form-group">
+                            <label for="otherLastName">Otros Apellidos:</label>
+                            <input type="text" class="form-control" formControlName="otherLastName" minlength="5"
+                                maxlength="20" />
+                        </div>
+                        <div class="form-group">
+                            <label for="country">País:</label>
+                            <select class="form-control" formControlName="country">
+                                <option value="BO">Bolivia</option>
+                                <option value="PE">Peru</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="gender">Genero:</label>
+                            <select class="form-control" formControlName="gender">
+                                <option value="F">Femenino</option>
+                                <option value="M">Masculino</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="dateBirth">Otros Apellidos:</label>
+                            <input type="date" class="form-control" formControlName="dateBirth" />
+                        </div>
+                        <div class="form-group">
+                            <label for="gdpr_consent">Da consentimiento a estos datos:</label>
+                            <input type="checkbox" class="form-control" formControlName="gdpr_consent" />
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

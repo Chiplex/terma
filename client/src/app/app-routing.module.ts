@@ -22,6 +22,10 @@ const routes: Routes = [
   {
     path: 'user',
     loadChildren: () => import('./component/user/user.module').then(m => m.UserModule)
+  },
+  {
+    path:'credential',
+    loadChildren: () => import('./component/credential/credential.module').then(m => m.CredentialModule)
   }
 ];
 

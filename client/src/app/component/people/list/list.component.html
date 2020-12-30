@@ -1,1 +1,29 @@
-<p>list works!</p>
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-xl-8 offset-xl-2">
+            <div class="card shadow">
+                <div class="card-header text-right py-3">
+                    <a [routerLink]="['/people/register']" href="#" class="btn btn-primary" type="button">Nuevo</a>
+                </div>
+                <ngx-datatable [rows]="people$" [columns]="columns" class="bootstrap" rowHeight="auto"
+                    [columnMode]="'force'">
+                    <ngx-datatable-column name="Nombre">
+                        <ng-template let-row="row" let-id="row.id" ngx-datatable-cell-template>
+                            {{ row.name }}
+                        </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column name="Pais">
+                        <ng-template let-row="row" let-id="row.id" ngx-datatable-cell-template>
+                            {{ row.country }}
+                        </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column name="Genero">
+                        <ng-template let-row="row" let-id="row.id" ngx-datatable-cell-template>
+                            {{ row.gender }}
+                        </ng-template>
+                    </ngx-datatable-column>
+                </ngx-datatable>
+            </div>
+        </div>
+    </div>
+</div>

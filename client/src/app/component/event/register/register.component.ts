@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { EventService } from 'src/app/services/event.service';
 import { Event } from "src/app/interface/event";
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-register',
@@ -19,7 +20,7 @@ export class EventRegisterComponent implements OnInit {
     willEnd: ''
   };
   public eventForm: FormGroup;
-  public error:boolean = false;
+  public errors:any[] = [];
   public message:string = "false";
 
   constructor(
@@ -45,17 +46,46 @@ export class EventRegisterComponent implements OnInit {
     this.event.willStart = form.willStartDate + ' ' + form.willStartTime;
     this.event.willEnd = form.willEndDate + ' ' + form.willEndTime;
     
-    this.eventService.store(this.event).subscribe(res => this.onSuccess() , err => this.onError(err));
+    this.eventService.store(this.event).subscribe(res => this.onSuccess() , (err: HttpErrorResponse) => this.onError(err));
   }
 
   onError(err){
-    this.error = true;
-    this.message = err.error.message
-
+    this.errors = this.resolveErrorResponse(err);
   }
 
   onSuccess(){
-    this.error = false;
+    this.errors = [];
     this.router.navigate(['/event']);
+  }
+
+  resolveErrorResponse(errorResponse: HttpErrorResponse) {
+    // 1 - Create empty array to store errors
+    const errors = [];
+  
+    // 2 - check if the error object is present in the response
+    if (errorResponse.error) {
+  
+      // 3 - Push the main error message to the array of errors
+      errors.push(errorResponse.error.message);
+  
+      // 4 - Check for Laravel form validation error messages object
+      if (errorResponse.error.errors) {
+  
+        // 5 - For each error property (which is a form field)
+        for (const property in errorResponse.error.errors) {
+  
+          if (errorResponse.error.errors.hasOwnProperty(property)) {
+  
+            // 6 - Extract it's array of errors
+            const propertyErrors: Array<string> = errorResponse.error.errors[property];
+  
+            // 7 - Push all errors in the array to the errors array
+            propertyErrors.forEach(error => errors.push(error));
+          }
+        }
+      }
+    }
+
+    return errors;
   }
 }

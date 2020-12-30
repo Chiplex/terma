@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { on } from 'process';
 import { Observable } from 'rxjs';
 import { Event } from 'src/app/interface/event';
 import { EventService } from 'src/app/services/event.service';
@@ -10,7 +9,6 @@ import { EventService } from 'src/app/services/event.service';
   styleUrls: ['./list.component.css']
 })
 export class EventListComponent implements OnInit {
-
   public event$: Observable<Event[]>;
   public columns = [{ name: 'title' }, { name: 'willStart' }, { name: 'willEnd' }];
     

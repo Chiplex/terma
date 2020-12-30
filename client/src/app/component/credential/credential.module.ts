@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { CredentialRoutingModule } from './credential-routing.module';
-
 import { CredentialListComponent } from './list/list.component';
 import { CredentialRegisterComponent } from './register/register.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';

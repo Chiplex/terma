@@ -4,7 +4,6 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Event } from "./../interface/event";
 
-
 @Injectable({
   providedIn: 'root'
 })

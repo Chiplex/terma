@@ -15,11 +15,7 @@ class PeopleController extends Controller
      */
     public function index()
     {
-        $people = People::paginate(25);
-        return response()->json([
-            'success' => true,
-            'data' => $people
-        ]);
+        return  People::all();
     }
 
     /**
@@ -29,14 +25,7 @@ class PeopleController extends Controller
      */
     public function create()
     {
-        $requestValidated = $request->validate([
-            'user_id' => 'required|exists:user,id'
-        ]);
-        $guest = People::create($requestValidated);
-        return response()->json([
-            'success' => true,
-            'data' => $guest
-        ]);
+        
     }
 
     /**
@@ -47,7 +36,22 @@ class PeopleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $requestValidated = $request->validate([
+            'name' => 'required|max:20',
+            'otherName' => 'max:20',
+            'lastName' => 'required|max:20',
+            'otherLastName' => 'required|max:20',
+            'country' => 'required|max:20',
+            'gender' => 'required|max:20',
+            'dateBirth' => 'required|date_format:Y-m-d',
+            'gdpr_consent' => 'required|boolean',
+        ]);
+        
+        $people = People::create($requestValidated);
+        return response()->json([
+            'success' => true,
+            'data' => $people
+        ]);
     }
 
     /**

@@ -1,9 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AuthGuardService } from "../../services/auth-guard.service";
 import { EventListComponent } from "./list/list.component";
 import { EventRegisterComponent } from "./register/register.component";
-import { AuthGuardService } from "../../services/auth-guard.service";
-
 
 const routes: Routes = [
   {
@@ -12,7 +11,7 @@ const routes: Routes = [
     canActivate: [AuthGuardService]
   },
   {
-    path: 'event/create',
+    path: 'event/register',
     component: EventRegisterComponent, 
     canActivate: [AuthGuardService]
   }

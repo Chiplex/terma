@@ -8,17 +8,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EventListComponent } from "./list/list.component";
 import { EventRegisterComponent } from "./register/register.component";
 
-
-
 @NgModule({
   declarations: [
     EventListComponent,
     EventRegisterComponent
   ],
   imports: [
-    NgxDatatableModule,
     CommonModule,
     EventRoutingModule,
+    NgxDatatableModule,
     FormsModule,
     ReactiveFormsModule
   ]
