@@ -10,14 +10,21 @@ import { PeopleService } from "src/app/services/people.service";
 export class PeopleListComponent implements OnInit {
   public people$: Observable<People[]>;
   public columns = [{name:'name'}, {name: 'country'}, {name:'gender'}];
+  public errors:any[] = [];
 
   constructor(public peopleService:PeopleService) { }
 
   ngOnInit(): void {
-    this.peopleService.index().subscribe(res => this.onSuccess(res));
+    this.peopleService.index().subscribe(res => this.onSuccess(res), err => this.onError(err));
+  
   }
-  public onSuccess(res){
+  
+  private onSuccess(res){
     this.people$ = res;
   }
 
+  private onError(err){
+    console.log(err);
+    
+  }
 }

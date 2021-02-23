@@ -15,11 +15,16 @@ export class EventListComponent implements OnInit {
   constructor(public eventService: EventService) { }
 
   ngOnInit(): void {
-     this.eventService.index().subscribe(res => this.onSuccess(res));
+     this.eventService.index().subscribe(res => this.onSuccess(res), err => this.onError(err));
     
   }
 
-  public onSuccess(res){
+  private onSuccess(res){
     this.event$ = res;
+  }
+
+  private onError(err){
+    console.log(err);
+    
   }
 }
